@@ -61,20 +61,52 @@ export default {
       });
     };
 
-    for (let i = 0; i < 16; i++) {
+    const cardItems = [1, 2, 3, 4, 5, 6, 7, 8];
+
+    cardItems.forEach((item) => {
       cardList.value.push({
-        value: i,
+        value: item,
         visible: false,
-        position: i,
+        position: null,
         matched: false,
       });
-    }
+
+      cardList.value.push({
+        value: item,
+        visible: false,
+        position: null,
+        matched: false,
+      });
+    });
+
+    cardList.value = cardList.value.map((card, index) => {
+      return {
+        ...card,
+        position: index,
+      };
+    });
+
+    // for (let i = 0; i < 16; i++) {
+    //   cardList.value.push({
+    //     value: i,
+    //     visible: false,
+    //     position: i,
+    //     matched: false,
+    //   });
+    // }
 
     const flipCard = (payload) => {
       cardList.value[payload.position].visible = true;
 
       if (userSelection.value[0]) {
-        userSelection.value[1] = payload;
+        if (
+          userSelection.value[0].position === payload.position &&
+          userSelection.value[0].faceValue === payload.faceValue
+        ) {
+          return;
+        } else {
+          userSelection.value[1] = payload;
+        }
       } else {
         userSelection.value[0] = payload;
       }
@@ -93,8 +125,10 @@ export default {
             cardList.value[cardOne.position].matched = true;
             cardList.value[cardTwo.position].matched = true;
           } else {
-            cardList.value[cardOne.position].visible = false;
-            cardList.value[cardTwo.position].visible = false;
+            setTimeout(() => {
+              cardList.value[cardOne.position].visible = false;
+              cardList.value[cardTwo.position].visible = false;
+            }, 1000);
           }
 
           userSelection.value.length = 0;
