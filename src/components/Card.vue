@@ -31,11 +31,10 @@ export default {
     },
   },
   setup(props, context) {
+    // eslint-disable-next-line vue/return-in-computed-property
     const flippedStyles = computed(() => {
       if (props.visible) {
         return "is-flipped";
-      } else {
-        return "console";
       }
     });
 
