@@ -1,21 +1,21 @@
 <template>
-  <h1>Peek a Vue</h1>
+  <h1>Flip a Card</h1>
 
-  <section class="game-board">
+  <transition-group tag="section" class="game-board" name="shuffle-card">
     <Card
-      v-for="(card, index) in cardList"
-      :key="`card-${index}`"
+      v-for="card in cardList"
+      :key="`${card.value}-${card.variant}`"
       :value="card.value"
       :visible="card.visible"
       :position="card.position"
       :matched="card.matched"
       @select-card="flipCard"
     />
-  </section>
+  </transition-group>
 
   <h2>{{ status }}</h2>
-  <button @click="shuffleCards">Shuffle 'em</button>
-  <button @click="restartGame">Restart Game</button>
+  <button v-if="newPlayer" @click="startGame" class="button">Start Game</button>
+  <button v-else @click="restartGame" class="button">Restart Game</button>
 </template>
 
 <script>
@@ -28,10 +28,20 @@ export default {
   components: {
     Card,
   },
+  mounted() {
+    this.restartGame();
+  },
   setup() {
-    // sets reactive
+    // Sets reactive
     const cardList = ref([]);
     const userSelection = ref([]);
+    const newPlayer = ref(true);
+
+    const startGame = () => {
+      newPlayer.value = false;
+
+      restartGame();
+    };
 
     const status = computed(() => {
       if (remainingPairs.value === 0) {
@@ -49,23 +59,29 @@ export default {
       return remainingCards / 2;
     });
 
-    const shuffleCards = () => {
-      cardList.value = _.shuffle(cardList.value);
-    };
-
     const restartGame = () => {
-      shuffleCards();
+      cardList.value = _.shuffle(cardList.value);
 
       cardList.value = cardList.value.map((card, index) => {
         return { ...card, matched: false, position: index, visible: false };
       });
     };
 
-    const cardItems = [1, 2, 3, 4, 5, 6, 7, 8];
+    const cardItems = [
+      "andre3000",
+      "lilwayne",
+      "snoop",
+      "tupac",
+      "kanyewest",
+      "eminem",
+      "pharrell",
+      "chance",
+    ];
 
     cardItems.forEach((item) => {
       cardList.value.push({
         value: item,
+        variant: 2,
         visible: false,
         position: null,
         matched: false,
@@ -86,15 +102,6 @@ export default {
       };
     });
 
-    // for (let i = 0; i < 16; i++) {
-    //   cardList.value.push({
-    //     value: i,
-    //     visible: false,
-    //     position: i,
-    //     matched: false,
-    //   });
-    // }
-
     const flipCard = (payload) => {
       cardList.value[payload.position].visible = true;
 
@@ -112,7 +119,7 @@ export default {
       }
     };
 
-    // check if more than 2 cards selected
+    // Check if more than 2 cards selected
     watch(
       userSelection,
       (currentValue) => {
@@ -134,7 +141,7 @@ export default {
           userSelection.value.length = 0;
         }
       },
-      { deep: true } // track deep value
+      { deep: true } // Track deep value
     );
 
     return {
@@ -142,29 +149,54 @@ export default {
       flipCard,
       userSelection,
       status,
-      shuffleCards,
       restartGame,
+      startGame,
+      newPlayer,
     };
   },
 };
 </script>
 
 <style>
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  background: #fdf4ff;
+  padding-top: 3em;
+  color: #212529;
+  height: 100vh;
+}
+
+h1 {
+  margin-top: 0;
 }
 
 .game-board {
   display: grid;
-  grid-template-columns: 100px 100px 100px 100px;
-  grid-template-rows: 100px 100px 100px 100px;
-  grid-column-gap: 30px;
-  grid-row-gap: 30px;
+  grid-template-columns: repeat(6, 8em);
+  grid-template-rows: repeat(2, 14em);
+  /* grid-template-columns: repeat(4, 4.5em);
+  grid-template-rows: repeat(4, 7.3em); */
+  grid-gap: 0.6em;
   justify-content: center;
 }
+
+.button {
+  background: #212529;
+  color: #fff;
+  padding: 1em 2em;
+}
+
+.shuffle-card-move {
+  transition: transform 0.8s ease-in;
+}
 </style>
+
