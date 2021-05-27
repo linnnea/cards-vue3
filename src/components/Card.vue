@@ -91,22 +91,32 @@ export default {
   background: var(--front);
 }
 
-img {
-  width: 3.4em;
-  height: 3.4em;
+.card-face.is-front img{
+  width: 2.5em;
+  height: 2.5em;
 }
 
 .card-face.is-front,
 .card-face.is-back {
-  /* border: 5px solid var(--light); */
   color: var(--light);
 }
 
 .card-face.is-back {
   background-color: var(--back);
   background-image: url("../../public/img/mic.png");
-  background-size: 2em;
+  background-size: 1.5em;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+@media only screen and (max-width: 375px) and (max-height: 566px) {
+  .card-face.is-front img{
+    width: 2em;
+    height: 2em;
+  }
+
+  .card-face.is-back {
+    background-size: 1em;
+  }
 }
 </style>

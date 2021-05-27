@@ -21,8 +21,14 @@ export default {
 footer {
   display: flex;
   justify-content: space-between;
-  padding: 0.5em 0.4em 0.3em 0.4em;
+  padding: 0.5em 0.4em;
   border-top: 1px solid #212529;
+}
+
+@media only screen and (max-width: 375px) and (max-height: 566px) {
+  footer {
+    padding: 0.5em 0.4em 0.3em 0.4em;
+  }
 }
 
 @media screen and (min-width: 1440px) {

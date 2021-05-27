@@ -39,23 +39,39 @@ export default {
 <style scoped>
 .game-board {
   display: grid;
-  grid-template-columns: repeat(4, 3.5em);
-  grid-template-rows: repeat(4, 6.5em);
+  grid-template-columns: repeat(4, 4em);
+  grid-template-rows: repeat(4, 7em);
   grid-gap: 1.4em;
   justify-content: center;
-  margin-top: 2em;
+  margin: 2em auto auto auto;
+}
+
+@media only screen and (max-width: 375px) and (max-height: 566px) {
+  .game-board {
+    grid-template-columns: repeat(4, 2.5em);
+    grid-template-rows: repeat(4, 4.5em);
+  }
 }
 
 .shuffle-card {
   transition: transform 0.8s ease-in;
 }
 
+@media screen and (min-width: 768px) {
+  .game-board {
+    grid-template-columns: repeat(4, 4em);
+    grid-template-rows: repeat(4, 7em);
+    align-content: flex-start;
+    margin: 1em auto auto auto;
+  }
+}
+
 @media screen and (min-width: 1024px) {
   .game-board {
     grid-template-columns: repeat(8, 6em);
-    grid-template-rows: repeat(2, 10em);
+    grid-template-rows: repeat(2, 12em);
     align-content: center;
-    margin: 1em 0;
+    margin: 4em auto auto auto;
   }
 }
 </style>

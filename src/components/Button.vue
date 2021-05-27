@@ -40,12 +40,30 @@ export default {
   align-items: center;
   width: 10em;
   height: 3.3em;
-  margin: 0 auto;
+  margin: -6.5em auto 0 auto;
   background: var(--dark);
   border: none;
   border-radius: 5em;
   color: var(--light);
-  padding: 1em 2em;
-  margin-bottom: 2em;
+  padding: 1em 1.5em;
+}
+
+@media only screen and (max-width: 375px) and (max-height: 566px) {
+  .button {
+    margin-top: 1em;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .button {
+    margin: -5em auto 0 auto;
+  }
+}
+
+
+@media screen and (min-width: 1024px) {
+  .button {
+    margin: -7.5em auto 0 auto;
+  }
 }
 </style>
