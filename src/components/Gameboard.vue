@@ -50,6 +50,8 @@ export default {
   .game-board {
     grid-template-columns: repeat(4, 2.5em);
     grid-template-rows: repeat(4, 4.5em);
+    margin: 1em auto auto auto;
+    height: 21em;
   }
 }
 

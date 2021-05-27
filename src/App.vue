@@ -156,7 +156,7 @@ footer {
 
   .container {
     grid-template-columns: 1fr;
-    grid-template-rows: 2.5em auto auto 2.5em;
+    grid-template-rows: repeat(4, 1fr);
   }
 }
 </style>

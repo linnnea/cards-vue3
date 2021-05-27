@@ -50,7 +50,7 @@ export default {
 
 @media only screen and (max-width: 375px) and (max-height: 566px) {
   .button {
-    margin-top: 1em;
+    margin: 2em auto 1em auto;
   }
 }
 
