@@ -64,7 +64,8 @@ export default {
     grid-template-columns: repeat(4, 4em);
     grid-template-rows: repeat(4, 7em);
     align-content: flex-start;
-    margin: 1em auto auto auto;
+    margin: 0 auto;
+    padding-top: 4em;
   }
 }
 
