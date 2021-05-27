@@ -72,6 +72,7 @@ export default {
   justify-content: center;
   align-items: center;
   backface-visibility: hidden;
+  cursor: pointer;
 
   box-shadow: var(--shadow);
   border: 5px solid var(--light);
