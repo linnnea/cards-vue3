@@ -1,4 +1,8 @@
-# cards-vue3
+# Rap Cards in Vue3
+
+Memory Card Game built with Vue 3
+
+[View the demo](https://cards-vue3.vercel.app/)
 
 ## Project setup
 ```
