@@ -10,8 +10,6 @@
       @select-card="selectCard"
     />
   </transition-group>
-
-  <h2>{{ status }}</h2>
 </template>
 
 <script>
@@ -22,10 +20,6 @@ export default {
   props: {
     cardList: {
       type: Array,
-      required: true,
-    },
-    status: {
-      type: String,
       required: true,
     },
   },
@@ -45,9 +39,23 @@ export default {
 <style scoped>
 .game-board {
   display: grid;
-  grid-template-columns: repeat(4, 4.5em);
-  grid-template-rows: repeat(4, 7.3em);
-  grid-gap: 0.6em;
+  grid-template-columns: repeat(4, 3.5em);
+  grid-template-rows: repeat(4, 6.5em);
+  grid-gap: 1.4em;
   justify-content: center;
+  margin-top: 2em;
+}
+
+.shuffle-card {
+  transition: transform 0.8s ease-in;
+}
+
+@media screen and (min-width: 1024px) {
+  .game-board {
+    grid-template-columns: repeat(8, 6em);
+    grid-template-rows: repeat(2, 10em);
+    align-content: center;
+    margin: 1em 0;
+  }
 }
 </style>

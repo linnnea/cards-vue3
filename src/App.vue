@@ -1,15 +1,18 @@
 <template>
-  <Header />
-  <Gameboard :cardList="cardList" :status="status" @flip-card="flipCard" />
-  <Button :newPlayer="newPlayer" @start-new-game="startNewGame" />
-  <Footer />
+  <div class="container">
+    <Header />
+    <Gameboard :cardList="cardList" @flip-card="flipCard" />
+    <Button :newPlayer="newPlayer" @start-new-game="startNewGame" />
+    <Footer :status="status" />
+  </div>
 </template>
 
 <script>
 import { ref, watch } from "vue";
+import { launchConfetti } from "./utilities/confetti";
+import rapDeck from "./data/rapDeck.json";
 import createGame from "./features/createGame";
 import createDeck from "./features/createDeck";
-import rapDeck from "./data/rapDeck.json";
 import Header from "./components/Header";
 import Gameboard from "./components/Gameboard";
 import Button from "./components/Button";
@@ -22,6 +25,9 @@ export default {
     Gameboard,
     Button,
     Footer,
+  },
+  mounted() {
+    this.startGame();
   },
   setup() {
     const { cardList } = createDeck(rapDeck);
@@ -59,11 +65,11 @@ export default {
       }
     };
 
-    // watch(matchesFound, currentValue => {
-    //   if (currentValue === 8) {
-    //     launchConfetti()
-    //   }
-    // })
+    watch(matchesFound, (currentValue) => {
+      if (currentValue === 8) {
+        launchConfetti();
+      }
+    });
 
     watch(
       userSelection,
@@ -113,28 +119,33 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background: #fdf4ff;
-  /* padding-top: 3em; */
-  color: #212529;
+  background: var(--light);
+  color: var(--dark);
   height: 100vh;
 }
 
-h1 {
-  margin-top: 0;
+:root {
+  --light: #fdf4ff;
+  --dark: #212529;
+  --front: #fcf9b5;
+  --back: #5b6f5e;
+  --accent: #ffbafc;
+
+  --shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+    -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
 }
 
-.game-board {
+.container {
   display: grid;
-  /* grid-template-columns: repeat(6, 8em);
-  grid-template-rows: repeat(2, 14em); */
-  grid-template-columns: repeat(4, 4.5em);
-  grid-template-rows: repeat(4, 7.3em);
-  grid-gap: 0.6em;
-  justify-content: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 4em 1fr 5em 4em;
+  height: 100vh;
 }
 
-.shuffle-card-move {
-  transition: transform 0.8s ease-in;
+header,
+footer {
+  font-family: metalista-web, serif;
+  font-size: 2.5rem;
 }
 </style>
 

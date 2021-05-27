@@ -63,6 +63,7 @@ export default {
 
 .card-face {
   position: absolute;
+  left: -5px;
   width: 100%;
   height: 100%;
   border-radius: 0.7em;
@@ -72,8 +73,8 @@ export default {
   align-items: center;
   backface-visibility: hidden;
 
-  box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
-    -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: var(--shadow);
+  border: 5px solid var(--light);
 }
 
 .card.is-flipped {
@@ -81,36 +82,31 @@ export default {
 }
 
 .card-face.is-front {
-  /* background: #e4b5fc; */
-  background: #fcf6b5;
-  color: white;
+  background: var(--front);
 
   transform: rotateY(180deg);
 }
 
-/* .card-face.is-front:nth-child(even) {
-  background: #fcf6b5;
+.card-face.is-front:nth-child(even) {
+  background: var(--front);
 }
-.card-face.is-front:nth-child(odd) {
-  background: #e4b5fc;
-} */
 
 img {
   width: 3.4em;
   height: 3.4em;
 }
 
+.card-face.is-front,
 .card-face.is-back {
-  /* background-image: url("https://media.giphy.com/media/yFGjHOQpwvkCLxnckP/giphy.gif");
-  background-size: cover;
-  background-repeat: no-repeat; */
-  background: grey;
-  color: white;
+  /* border: 5px solid var(--light); */
+  color: var(--light);
 }
 
-.checkmark {
-  position: absolute;
-  right: 0.3em;
-  bottom: 0.2em;
+.card-face.is-back {
+  background-color: var(--back);
+  background-image: url("../../public/img/mic.png");
+  background-size: 2em;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 </style>
