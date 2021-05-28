@@ -43,7 +43,7 @@ export default {
   grid-template-rows: repeat(4, 5.5em);
   grid-gap: 1.4em;
   justify-content: center;
-  margin: 1em auto;
+  margin: auto 0;
 }
 
 @media only screen and (max-width: 375px) and (max-height: 566px) {
