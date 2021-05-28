@@ -56,14 +56,7 @@ export default {
 
 @media screen and (min-width: 768px) {
   .button {
-    margin: 5em auto;
-  }
-}
-
-
-@media screen and (min-width: 1024px) {
-  .button {
-    margin: -7.5em auto 0 auto;
+    margin: 2em auto;
   }
 }
 </style>

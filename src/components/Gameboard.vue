@@ -39,11 +39,11 @@ export default {
 <style scoped>
 .game-board {
   display: grid;
-  grid-template-columns: repeat(4, 4em);
-  grid-template-rows: repeat(4, 7em);
+  grid-template-columns: repeat(4, 3em);
+  grid-template-rows: repeat(4, 5em);
   grid-gap: 1.4em;
   justify-content: center;
-  margin: 2em auto auto auto;
+  margin: 1em auto;
 }
 
 @media only screen and (max-width: 375px) and (max-height: 566px) {
@@ -61,20 +61,17 @@ export default {
 
 @media screen and (min-width: 768px) {
   .game-board {
-    grid-template-columns: repeat(4, 4em);
-    grid-template-rows: repeat(4, 7em);
-    align-content: flex-start;
+    grid-template-columns: repeat(8, 4em);
+    grid-template-rows: repeat(2, 8em);
+    align-content: center;
     margin: 0 auto;
-    padding-top: 4em;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .game-board {
-    grid-template-columns: repeat(8, 6em);
-    grid-template-rows: repeat(2, 12em);
-    align-content: center;
-    margin: 4em auto auto auto;
+    grid-template-columns: repeat(8, 5em);
+    grid-template-rows: repeat(2, 10em);
   }
 }
 </style>
