@@ -40,7 +40,7 @@ export default {
   align-items: center;
   width: 10em;
   height: 3.3em;
-  margin: -6.5em auto 0 auto;
+  margin: 1em auto;
   background: var(--dark);
   border: none;
   border-radius: 5em;
