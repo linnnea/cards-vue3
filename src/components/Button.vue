@@ -46,6 +46,11 @@ export default {
   border-radius: 5em;
   color: var(--light);
   padding: 1em 1.5em;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 0.9;
 }
 
 @media only screen and (max-width: 375px) and (max-height: 566px) {
